@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import AOS from "aos";
+import "aos/dist/aos.css";
 import "./App.css";
 import Coin from "./Coin";
 
@@ -8,6 +10,7 @@ function App() {
   const [search, setSearch] = useState("");
 
   useEffect(() => {
+    AOS.init({ duration: 2000 });
     axios
       .get(
         "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=50&page=1&sparkline=false"
@@ -27,7 +30,7 @@ function App() {
   );
 
   return (
-    <div className="coin-app">
+    <div data-aos="zoom-out" className="coin-app">
       <div className="coin-search">
         <h1 className="coin-text">Search a currency</h1>
         <form>
